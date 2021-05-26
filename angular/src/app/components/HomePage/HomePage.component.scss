@@ -1,0 +1,61 @@
+@import "variables";
+@import "mixins";
+
+.page-title {
+    @include pageTitle;
+}
+
+.available-cars {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.car {
+    display: block;
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 2%;
+}
+
+.image {
+    cursor: pointer;
+    img {
+        display: block;
+        width: 250px;
+        height: 150px;
+        object-fit: cover;
+    }
+}
+
+.car-info {
+    padding: 5px 2px;
+}
+
+.type {
+    text-align: center;
+    color: white;
+    background-color: $navbar-color;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    @include generalButton;
+}
+
+.empty-text {
+    margin-left: 20px;
+}

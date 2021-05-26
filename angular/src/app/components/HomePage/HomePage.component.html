@@ -1,0 +1,39 @@
+<div class="home-page">
+  <h1 class="page-title">Available Cars</h1>
+  <ul class="available-cars">
+      <li
+        class="car"
+        *ngFor="let car of cars; let i = index;"
+      >
+        <ng-template 
+          let-showRent="showRent"
+          let-showFree="showFree"
+          [ngTemplateOutletContext]="{ 
+            showRent: userService.isLoggedIn() && car.status !== status.RENTED,
+            showFree: userService.isLoggedIn() &&
+              car.status === status.RENTED &&
+              userService.getUser()?.id === car.rentalCustomer
+          }"
+          [ngTemplateOutlet]="car_template" #car_template
+        >
+          <div class="image" (click)="moveToCarPage(car.id)">
+            <img [src]="car?.image_url" [alt]="car.type">
+          </div>
+
+          <div class="car-info">
+            <div><strong>Rent Price:</strong> {{ car.rentPrice }} $</div>
+            <div class="status"><strong>Status:</strong> {{ getStatusLabel(car.status) }}</div>
+          </div>
+
+          <div class="type" (click)="moveToCarPage(car.id)">{{ car.type }}</div>
+
+          <div class="actions"  *ngIf="showRent || showFree">
+            <button *ngIf="showRent" class="btn" (click)="rentCar(car.id)">Rent</button>
+
+            <button *ngIf="showFree" class="btn" (click)="freeCar(car.id)">Free</button>
+          </div>
+        </ng-template>
+      </li>
+      <span class="empty-text" *ngIf="cars.length < 1">There are no cars on this site yet.</span>
+  </ul>
+</div>

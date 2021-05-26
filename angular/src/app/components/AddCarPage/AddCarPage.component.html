@@ -1,0 +1,37 @@
+<div class="add-car-page">
+  <h1 class="page-title">Add Car</h1>
+  <form class="form" (submit)="saveCar()">
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input
+        type="text"
+        class="input type"
+        id="type"
+        required
+        [(ngModel)]="car.type"
+        name="type"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="rentPrice">Rent Price</label>
+      <input
+        type="number"
+        min="0"
+        class="input rent-price"
+        id="rentPrice"
+        required
+        [(ngModel)]="car.rentPrice"
+        name="rentPrice"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image</label>
+      <img *ngIf="!!previewImageSrc" class="preview" [src]="previewImageSrc">
+      <input type="file" id="image" name="image" (change)="onImageChange($event)" [(ngModel)]="car.image" required />
+    </div>
+
+    <button type="submit" class="btn">Save</button>
+  </form>
+</div>

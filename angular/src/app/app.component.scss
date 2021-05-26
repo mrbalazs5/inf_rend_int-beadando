@@ -1,0 +1,147 @@
+@import "variables";
+@import "mixins";
+
+.navbar {
+  background-color: $navbar-color;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  list-style: none;
+}
+
+.error {
+  display: block;
+  color: $error-color;
+  margin-top: 5px;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  color: white;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: $navbar-color-hover;
+  }
+}
+
+.profile {
+  position: relative;
+}
+
+.user-management {
+  border-right: 1px solid white;
+  padding: 10px;
+}
+
+.user-management,
+.login,
+.registration {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-20px);
+  position: absolute;
+
+  &.show {
+    transition: 0.4s;
+    opacity: 100%;
+    pointer-events: initial;
+    transform: translateX(0);
+    display: block;
+    position: relative;
+  }
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.text-input {
+  padding: 3px 5px;
+  border: none;
+  outline: none;
+}
+
+.user-btn {
+  padding: 5px;
+  background-color: $navbar-color;
+  border: none;
+  color: white;
+  font-size: 16px;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: $user-btn-color;
+  }
+}
+
+.profile-dropdown {
+  position: fixed;
+  right: 0;
+  display: flex;
+  min-width: 200px;
+  background-color: $navbar-color-light;
+  color: white;
+  transition: 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+
+  &.show {
+    opacity: 100%;
+    pointer-events: initial;
+    transform: translateX(0);
+  }
+}
+
+.profile-menu {
+  min-width: 200px;
+}
+
+.profile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-menu-item {
+  padding: 0 10px;
+  margin: 10px 0;
+  letter-spacing: 0;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    letter-spacing: 1px;
+  }
+}
+
+.avatar {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  margin: 10px 20px;
+  border: 4px solid white;
+  transition: 0.2s;
+  transform: scale(0.9);
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.0);
+  }
+
+}

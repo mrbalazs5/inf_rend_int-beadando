@@ -1,0 +1,28 @@
+@import "variables";
+@import "mixins";
+
+.page-title {
+    @include pageTitle;
+}
+
+.car {
+    padding: 0 20px;
+}
+
+.image {
+    img {
+        display: block;
+        width: 400px;
+        height: 200px;
+        object-fit: cover;
+    }
+}
+
+.car-info {
+    margin-top: 10px;
+    font-size: 18px;
+
+    div {
+        margin-bottom: 10px;
+    }
+}
