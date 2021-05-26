@@ -1,0 +1,73 @@
+version: "3"
+
+services:     
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        environment:
+            MYSQL_DATABASE: 'inf_rend_int'
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: 'rootpw'
+            MYSQL_ROOT_PASSWORD: 'rootpw'
+        networks:
+            - car_rental
+        ports:
+            - '3306:3306'
+        deploy:
+            restart_policy:
+                condition: on-failure
+    phpmyadmin:
+        container_name: phpmyadmin
+        depends_on:
+            - mysql
+        image: phpmyadmin/phpmyadmin
+        networks:
+            - car_rental
+        ports:
+            - "8081:80"
+        links:
+            - mysql
+        environment:
+            PMA_HOST: mysql
+            MYSQL_ROOT_PASSWORD: rootpw
+        deploy:
+            restart_policy:
+                condition: on-failure
+    django:
+        container_name: django
+        build:
+            dockerfile: Docker/django/Dockerfile
+            context: ./
+        command: python manage.py runserver 0.0.0.0:8080
+        networks:
+            - car_rental
+        volumes:
+            - ./django:/django
+        ports:
+            - "8080:8080"
+        depends_on:
+            - mysql
+        deploy:
+            restart_policy:
+                condition: on-failure
+    angular:
+        container_name: angular
+        build:
+            dockerfile: Docker/angular/Dockerfile
+            context: ./
+        command: ng serve --host 0.0.0.0 --port 4200
+        networks:
+            - car_rental
+        volumes:
+            - ./angular:/angular
+        ports:
+            - "4200:4200"
+        depends_on:
+            - django
+        deploy:
+            restart_policy:
+                condition: on-failure
+
+networks:
+    car_rental:
+        external: true
