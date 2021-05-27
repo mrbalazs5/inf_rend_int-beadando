@@ -5,12 +5,11 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from car_rental.car_rental_app.serializers import UserSerializer
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 @csrf_exempt
 def postCreateUserAction(request):
     data = JSONParser().parse(request)
@@ -46,7 +45,7 @@ def getCarAction(request, id):
     return JsonResponse(carSerializer.data)
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAdminUser])
 @csrf_exempt
 def postCreateCarAction(request):
     data = request.data

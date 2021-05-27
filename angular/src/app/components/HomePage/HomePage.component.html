@@ -34,6 +34,6 @@
           </div>
         </ng-template>
       </li>
-      <span class="empty-text" *ngIf="cars.length < 1">There are no cars on this site yet.</span>
+      <span class="empty-text" *ngIf="!!cars && cars.length < 1">There are no cars on this site yet.</span>
   </ul>
 </div>

@@ -154,6 +154,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),
+    'JWT_PAYLOAD_HANDLER': 'car_rental.car_rental_app.jwt_payload_handler.jwt_payload_handler',
 }
 
 MEDIA_URL =  '/media/'

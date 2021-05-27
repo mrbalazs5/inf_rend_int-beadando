@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export type Message = {
   type: "success" | "error";
   text: string;
+  isShown?: boolean;
 }
 
 @Injectable({

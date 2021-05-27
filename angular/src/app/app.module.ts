@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor, AuthGuard } from './auth.service';
+import { AuthInterceptor, AuthGuard, AdminGuard } from './auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +35,8 @@ import { MessageManagerService } from './components/MessageManager/MessageManage
       useClass: AuthInterceptor,
       multi: true,
     },
-    AuthGuard
+    AuthGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

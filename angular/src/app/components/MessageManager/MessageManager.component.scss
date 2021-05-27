@@ -5,19 +5,19 @@
     color: white;
     margin-bottom: 10px;
     transition: 0.2s;
-    bottom: -20px;
-    opacity: 0;
-    pointer-events: none;
-
-    &.show {
-        bottom: 0;
-        opacity: 100%;
-        pointer-events: initial;
-    }
+    text-align: center;
+    bottom: 0;
 
     .message {
         padding: 10px;
         max-width: 300px;
+        opacity: 0;
+        pointer-events: none;
+
+        &.show {
+            opacity: 100%;
+            pointer-events: initial;
+        }
 
         &.success {
             background-color: #149714;

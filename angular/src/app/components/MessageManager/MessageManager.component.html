@@ -1,5 +1,5 @@
-<div class="messages{{ isShown ? ' show' : '' }}">
-    <div *ngFor="let message of messages" class="message {{ message.type }}">
+<div class="messages">
+    <div *ngFor="let message of messages" class="message{{ message?.isShown ? ' show' : '' }} {{ message.type }}">
         {{ message.text }}
     </div>
 </div>

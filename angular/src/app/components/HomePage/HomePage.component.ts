@@ -3,11 +3,7 @@ import { HomePageService } from './HomePage.service';
 import { UserService } from '../../User.service';
 import { MessageManagerService } from '../MessageManager/MessageManager.service';
 import { Router } from '@angular/router';
-
-export enum Status {
-  FREE = 0,
-  RENTED
-}
+import getStatusLabel, { Status } from 'src/app/utils/getStatusLbel';
 
 export type Car = {
   id: number;
@@ -16,11 +12,6 @@ export type Car = {
   status: number;
   rentalCustomer: number;
   image_url: string;
-}
-
-export const statusLabelMap: {[key: string]: string} = {
-  [Status.FREE]: "Free",
-  [Status.RENTED]: "Rented"
 }
 
 @Component({
@@ -32,7 +23,7 @@ export class HomePage implements OnInit {
   cars: Car[];
   status = Status
   
-  public getStatusLabel = (status: number) => statusLabelMap[status];
+  public getStatusLabel = getStatusLabel;
 
   constructor(
     private homePageService: HomePageService,

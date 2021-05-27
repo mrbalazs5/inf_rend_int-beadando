@@ -1,13 +1,13 @@
 <div class="car-page">
-    <h1 class="page-title">{{ car.type }}</h1>
+    <h1 class="page-title">{{ car?.type }}</h1>
     <div class="car">
         <div class="image">
-            <img [src]="car.image_url" [alt]="car.type">
+            <img [src]="car?.image_url" [alt]="car?.type">
         </div>
         <div class="car-info">
-            <div><strong>Type</strong> {{ car.type }}</div>
-            <div><strong>Rent Price</strong> {{ car.rentPrice }}</div>
-            <div><strong>Status</strong> {{ car.status }}</div>
+            <div><strong>Type</strong> {{ car?.type }}</div>
+            <div><strong>Rent Price</strong> {{ car?.rentPrice }}</div>
+            <div><strong>Status</strong> {{ getStatusLabel(car?.status) }}</div>
         </div>
     </div>
 </div>

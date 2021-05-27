@@ -7,7 +7,7 @@ from car_rental.car_rental_app.models import File
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'username', 'password']
+        fields = ['id', 'email', 'username', 'password', 'is_superuser']
 
     def create(self, validated_data):
         user = User.objects.create(

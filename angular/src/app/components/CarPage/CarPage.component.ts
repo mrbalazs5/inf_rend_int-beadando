@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import getStatusLabel from 'src/app/utils/getStatusLbel';
 import { Car } from '../HomePage/HomePage.component';
 import { MessageManagerService } from '../MessageManager/MessageManager.service';
 import { CarPageService } from './CarPage.service';
@@ -11,6 +12,8 @@ import { CarPageService } from './CarPage.service';
 })
 export class CarPage implements OnInit {
   car: Car;
+
+  public getStatusLabel = getStatusLabel;
 
   constructor(
     private route: ActivatedRoute,

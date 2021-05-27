@@ -2,7 +2,13 @@
   <nav class="navbar">
     <ul class="menu">
       <li class="menu-item"><a routerLink="/" class="nav-link">Home</a></li>
-      <li *ngIf="userService.isLoggedIn()" class="menu-item"><a routerLink="/add-car" class="nav-link">Add Car</a></li>
+      <li 
+        *ngIf="userService.isAdmin()" 
+        class="menu-item"
+      >
+        <a routerLink="/add-car" class="nav-link">Add Car</a>
+      </li>
+
     </ul>
 
     <div class="profile">
@@ -11,7 +17,7 @@
       <div class="profile-dropdown{{ isProfileMenuOpen ? ' show' : '' }}">
 
         <div class="user-management{{ menuState !== MenuState.HIDDEN && !userService.isLoggedIn() ? ' show' : '' }}">
-          <div class="login{{ menuState == MenuState.LOGIN && !userService.isLoggedIn() ? ' show' : '' }}">
+          <form class="login{{ menuState == MenuState.LOGIN && !userService.isLoggedIn() ? ' show' : '' }}">
             <div class="form-group">
               <label>Username</label><br />
               <input class="text-input" type="text" name="username" [(ngModel)]="loginUser.username">
@@ -22,7 +28,13 @@
 
             <div class="form-group">
               <label>Password</label><br />
-              <input class="text-input" type="password" name="password" [(ngModel)]="loginUser.password">
+              <input 
+                class="text-input"
+                type="password" 
+                name="password" 
+                [(ngModel)]="loginUser.password" 
+                autocomplete="false"
+              >
               <span class="error" *ngFor="let error of userService.loginErrors.password">
                 {{ error }}
               </span>
@@ -33,9 +45,9 @@
             <span class="error" *ngFor="let error of userService.loginErrors.non_field_errors">
               {{ error }}
             </span>
-          </div>
+          </form>
 
-          <div class="registration{{ menuState == MenuState.REGISTRATION && !userService.isLoggedIn() ? ' show' : '' }}">
+          <form class="registration{{ menuState == MenuState.REGISTRATION && !userService.isLoggedIn() ? ' show' : '' }}">
             <div class="form-group">
               <label>Email</label><br />
               <input class="text-input" type="text" name="email" [(ngModel)]="registrationUser.email">
@@ -54,7 +66,13 @@
 
             <div class="form-group">
               <label>Password</label><br />
-              <input class="text-input" type="password" name="password" [(ngModel)]="registrationUser.password">
+              <input
+                class="text-input" 
+                type="password" 
+                name="password" 
+                [(ngModel)]="registrationUser.password" 
+                autocomplete="false"
+              >
               <span class="error" *ngFor="let error of userService.registrationErrors.password">
                 {{ error }}
               </span>
@@ -65,7 +83,7 @@
             <span class="error" *ngFor="let error of userService.registrationErrors.non_field_errors">
               {{ error }}
             </span>
-          </div>
+          </form>
         </div>
 
         <div class="profile-menu">

@@ -10,6 +10,7 @@ export type User = {
   id: number;
   email: string;
   username: string;
+  is_superuser: boolean;
 }
 
 @Injectable()
@@ -111,23 +112,29 @@ export class UserService {
     return this.isTokenValid();
   }
 
+  public isAdmin(): boolean {
+    return !!this.getUser()?.is_superuser;
+  }
+
   public getUser() {
     try {
       const token = localStorage.getItem('token');
+
       if(!token) {
-        throw new Error('Token not found.');
+        return null;
       }
+
       const token_parts = token.split(/\./);
       const token_decoded = JSON.parse(window.atob(token_parts[1]));
   
       return {
         id: token_decoded.user_id,
         email: token_decoded.email,
-        username: token_decoded.username
+        username: token_decoded.username,
+        is_superuser: token_decoded.is_superuser
       }
     } catch(e) {
       console.error(e);
-      this.messageManager.setMessages([{type: "error", text: 'Failed to get user.'}]);
 
       return null;
     }
