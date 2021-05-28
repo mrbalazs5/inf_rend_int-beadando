@@ -113,7 +113,7 @@ export class UserService {
   }
 
   public isAdmin(): boolean {
-    return !!this.getUser()?.is_superuser;
+    return this.isLoggedIn() && !!this.getUser()?.is_superuser;
   }
 
   public getUser() {
