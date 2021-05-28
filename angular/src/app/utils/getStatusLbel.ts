@@ -8,6 +8,6 @@ export const statusLabelMap: {[key: string]: string} = {
     [Status.RENTED]: "Rented"
   }
 
-const getStatusLabel = (status: number | null | undefined) => !!status ? statusLabelMap[status] : null;
+const getStatusLabel = (status: number | null | undefined) => statusLabelMap[status as number];
 
 export default getStatusLabel;
